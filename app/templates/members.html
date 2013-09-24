@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% set active_page = "members" %}
+
+{% block content %}
+
+    <div id="members_div">
+
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Member
+                            Search
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in">
+                    <div class="panel-body">
+
+                        <form class="form-horizontal well" method="post" action="">
+                            {{ form.hidden_tag() }}
+                            <div class="form-group">
+                                <label for="srch_last" class="col-sm-2 control-label">Last Name</label>
+
+                                <div class="col-sm-4">
+                                    {{ form.srch_last(class='form-control', placeholder='Last Name') }}
+                                </div>
+
+                                <label for="firstnm" class="col-sm-2 control-label">First Name</label>
+
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="firstnm"
+                                           placeholder="First Name">
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="ssn" class="col-sm-2 control-label">SSN</label>
+
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="ssn"
+                                           placeholder="SSN">
+                                </div>
+
+                                <label for="upro_id" class="col-sm-2 control-label">uPro Id</label>
+
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="upro_id"
+                                           placeholder="uPro Id">
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-2">
+                                    <button class="btn btn-success btn-large" type="submit">Search</button>
+                                </div>
+                            </div>
+
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if members %}
+
+            <br/>
+
+            <div class="well">
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>uPro Id</th>
+                        <th>SSN</th>
+                        <th>Last Name</th>
+                        <th>First Name</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for m in members %}
+                        <tr>
+                            <td>{{ m.MemberID }}</td>
+                            <td>{{ m.SSN }}</td>
+                            <td>{{ m.LastName }}</td>
+                            <td>{{ m.FirstName }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+{% endblock %}

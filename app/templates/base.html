@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Sql Connect</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css')}}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/site.css')}}"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ url_for('index') }}">uPro OE</a>
+        </div>
+
+        {% set active_page = active_page|default('index') -%}
+
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li {% if active_page=='index' %} class="active" {%endif%} ><a href="{{ url_for('index') }}">Home</a></li>
+                <li {% if active_page=='about' %} class="active" {%endif%} ><a href="{{ url_for('about') }}">About</a></li>
+                <li {% if active_page=='contact' %} class="active" {%endif%} ><a href="{{ url_for('contact') }}">Contact</a></li>
+                <li {% if active_page=='members' %} class="active" {%endif%} ><a href="{{ url_for('members') }}">Members</a></li>
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</div>
+
+<div class="container">
+    {% block content %}{% endblock %}
+
+</div>
+
+<!-- /.container  -->
+
+<script src="{{ url_for('static', filename='js/jquery-1.10.2.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+
+
+<script src="{{ url_for('static', filename='js/site.js') }}"></script>
+
+{% if src %}
+{% block javascript %}
+<script src="{{ url_for('static', filename=src) }}"></script>
+{% endblock %}
+{% endif %}
+
+</body>
+</html>
